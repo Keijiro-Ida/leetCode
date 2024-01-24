@@ -18,18 +18,16 @@ class Solution {
      * @return ListNode
      */
     function reverseList($head) {
-       $prev = null;
 
+            $prev = null;
 
-       while($head != null) {
-        $next = $head->next;
-        $head->next = $prev;
-        $prev = $next;
-        $head = $next;
+            while($head != null) {
+                $next = $head->next;
+                $head->next = $prev;
+                $prev = $head;
+                $head = $next;
+            }
 
-       }
-
-       return $prev;
-
+            return $prev;
     }
 }
