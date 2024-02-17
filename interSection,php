@@ -1,0 +1,21 @@
+<?php
+
+class Solution {
+
+    /**
+     * @param Integer[] $nums1
+     * @param Integer[] $nums2
+     * @return Integer[]
+     */
+    function intersection($nums1, $nums2) {
+
+        $result = [];
+        $n2Count = array_count_values($nums2);
+
+        foreach($nums1 as $n1) {
+            if(isset($n2Count[$n1])) $result[] = $n1;
+        }
+
+        return array_unique($result);
+    }
+}
