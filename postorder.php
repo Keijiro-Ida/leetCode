@@ -21,7 +21,7 @@
         $result = [];
         if($root == null) return $result;
 
-        $result = $this->reverseOrder($root, $result);
+        $this->reverseOrder($root, $result);
         return $result;
     }
 
@@ -33,6 +33,6 @@
         }
         $result[] = $node->val;
 
-        return $result;
+        return;
     }
 }
