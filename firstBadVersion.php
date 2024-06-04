@@ -13,7 +13,8 @@
             $end = $n;
 
             while($start <= $end) {
-                $mid = floor(($start + $end) /2);
+                $mid = floor(($start + $end) / 2);
+
                 if($this->isBadVersion($mid)) {
                     $bad = $mid;
                     $end = $mid - 1;
@@ -21,6 +22,7 @@
                     $start = $mid + 1;
                 }
             }
+
             return $bad;
         }
     }
