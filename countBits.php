@@ -2,19 +2,18 @@
 
 class Solution {
 
-    /**
-     * @param Integer $n
-     * @return Integer[]
-     */
-    function countBits($n) {
+/**
+ * @param Integer $n
+ * @return Integer[]
+ */
+function countBits($n) {
 
-        $ans = [];
+   $ans = [];
 
-        for($i = 0; $i <= $n; $i++) {
-            $bin = decbin($i);
-            $count = substr_count($bin, '1');
-            $ans[] = $count;
-        }
-        return $ans;
-    }
+   for($i = 0; $i < $n; $i++) {
+        $ans[] = substr_count(decbin($i), '1');
+   }
+
+   return $ans;
+}
 }
