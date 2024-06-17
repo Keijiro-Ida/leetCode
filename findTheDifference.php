@@ -8,13 +8,13 @@ class Solution {
      * @return String
      */
     function findTheDifference($s, $t) {
-        $tCount = array_count_values(str_split($t));
-        $sCount = array_count_values(str_split($s));
+          $countT = array_count_values(str_split($t));
+        $countS = array_count_values(str_split($s));
 
-        foreach($tCount as $index => $cnt) {
-
-            if(!isset($sCount[$index]) || $cnt > $sCount[$index]) return $index;
-
+        foreach($countT as $char => $count) {
+            if(!isset($countS[$char]) || $count > $countS[$char]) {
+                return $char;
+            }
         }
     }
 }
