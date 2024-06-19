@@ -7,24 +7,28 @@ class Solution {
      * @return String[]
      */
     function readBinaryWatch($turnedOn) {
-        $res = [];
-        for ($hour = 0; $hour < 12; $hour++) {
-            for($minute = 0; $minute < 60; $minute++) {
-                if($this->bitCount($hour) + $this->bitCount($minute) == $turnedOn){
-                    $formattedMinute = $minute < 10 ? '0'.$minute: $minute;
-                    $res[] = $hour . ':' . $formattedMinute;
+        $results = [];
+
+        for($h = 0; $h < 12; $h++) {
+            for($m = 0; $m < 60; $m++) {
+                if($this->countBits($h) + $this->countBits($m) == $turnedOn) {
+                    $results[] = sprintf("%d:%02d", $h, $m);
                 }
             }
         }
-        return $res;
+
+        return $results;
+
     }
 
-    function bitCount($value) {
+    function countBits($num) {
         $count = 0;
-        while($value) {
-            $count += ($value & 1);
-            $value = $value >> 1;
+
+        while($num > 0) {
+            $count += $num & 1;
+            $num >>= 1;
         }
+
         return $count;
     }
 }
