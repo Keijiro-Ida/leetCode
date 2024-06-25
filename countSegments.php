@@ -7,8 +7,10 @@ class Solution {
      * @return Integer
      */
     function countSegments($s) {
-        $sArr = explode(' ', $s);
-        $result = array_filter($sArr, function($x) { return !empty($x);});
-        return count($result);
+       $parts = explode(' ', $s);
+       $filtered = array_filter($parts, function($parts) {
+            return !empty($parts);
+       });
+       return count($filtered);
     }
 }
