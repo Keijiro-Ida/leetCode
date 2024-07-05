@@ -12,7 +12,7 @@ class Solution {
         foreach($nums as $num) {
             if($num == 1) {
                 $count++;
-                if($count > $max) $max = $count;
+                $max = max($max, $count);
             } else {
                 $count = 0;
             }
