@@ -7,31 +7,35 @@ class Solution {
      * @return String[]
      */
     function findWords($words) {
-        $keybords = [
+        $keyboards = [
             "qwertyuiop",
             "asdfghjkl",
             "zxcvbnm"
         ];
-        $keyAt = [];
-        foreach($keybords as $index => $keys) {
-            $chars = str_split($keys);
-            foreach($chars as $char) {
-                $keyAt[$char] = $index + 1;
+       $keyboardRow = [];
+
+       foreach($keyboards as $index => $char) {
+            for($i = 0; $i < strlen($char); $i++) {
+                $keyboardRow[strtolower($char[$i])] = $index;
             }
-        }
+       }
+
         $result = [];
         foreach($words as $word) {
-            $chars = str_split($word);
-            $firstRow = $keyAt[strtolower($chars[0])] ?? null;
             $isOneRow = true;
-            foreach($chars as $char) {
-               if(($keyAt[strtolower($char)] ?? null) != $firstRow) {
-                $isOneRow = false;
-                break;
-               }
+            $firstRow = $keyboardRow[strtolower($word[0])];
+
+            for($i = 0; $i < strlen($word); $i++) {
+                if($keyboardRow[strtolower($word[$i])] != $firstRow) {
+                    $isOneRow = false;
+                    break;
+                }
             }
-            if($isOneRow) $result[] = $word;
+            if($isOneRow) {
+                $result[] = $word;
+            }
         }
+
         return $result;
     }
 }
