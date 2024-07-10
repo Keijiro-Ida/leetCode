@@ -22,33 +22,36 @@ class Solution {
      */
     function findMode($root) {
 
-        $this->findModeRecursive($root);
+        if($root === null) return [];
+
+        $this->traverse($root);
+
         $modes = [];
 
-        foreach($this->counts as $val => $count) {
-            if($count == $this->maxCount) {
-                $modes[] = $val;
+        foreach($this->count as $key => $val) {
+            if($val == $this->maxCount) {
+                $modes[] = $key;
             }
         }
+
         return $modes;
 
     }
 
+    function traverse($node) {
+        if($node === null) return;
 
-    private function findModeRecursive($node) {
-        if($node == null) return;
-
-        if(!isset($this->counts[$node->val])) {
-            $this->counts[$node->val] = 1;
+        if(isset($this->count[$node->val]) ){
+            $this->count[$node->val] += 1;
         } else {
-            $this->counts[$node->val]++;
+            $this->count[$node->val] = 0;
         }
 
-        $this->maxCount = max($this->maxCount, $this->counts[$node->val]);
+        $this->maxCount = max($this->maxCount, $this->count[$node->val]);
 
-        $this->findModeRecursive($node->left);
-        $this->findModeRecursive($node->right);
-
+        $this->traverse($node->left);
+        $this->traverse($node->right);
     }
+
 
 }
