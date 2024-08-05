@@ -22,8 +22,7 @@ class Solution {
     function averageOfLevels($root) {
 
         $averages = [];
-        $queue = [];
-        array_push($queue, $root);
+        $queue = [$root];
 
         while($queue != null) {
             $count = count($queue);
@@ -31,8 +30,9 @@ class Solution {
             for($i = 0; $i < $count; $i++) {
                 $node = array_shift($queue);
                 $levelSum += $node->val;
-                if($node->left !== null) $queue[] = $node->left;
-                if($node->right !== null) $queue[] = $node->right;
+
+                if($node->left != null) $queue[] = $node->left;
+                if($node->right != null) $queue[] = $node->right;
             }
             $averages[] = $levelSum / $count;
         }
